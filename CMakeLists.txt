@@ -3,8 +3,11 @@ project(StrangeGame)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
-set(SOURCE_FILES main.cpp)
-add_executable(StrangeGame ${SOURCE_FILES})
+include_directories("include")
+file(GLOB SOURCES src/*.cpp)
+file(GLOB INCLUDES include/*.hpp)
+
+add_executable(StrangeGame ${SOURCES} ${INCLUDES})
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake_modules")
 find_package(SFML REQUIRED system window graphics network audio)
