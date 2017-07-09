@@ -1,3 +1,7 @@
+#Idea and CMake dirs
+.idea
+cmake-build-debug
+
 # Prerequisites
 *.d
 
