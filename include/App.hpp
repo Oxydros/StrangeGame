@@ -13,7 +13,8 @@
 # define BITS_PER_PIXEL    32
 
 
-class App {
+class App
+{
 public:
     static sf::Time const   TimePerFrame;
     static float const      PlayerSpeed;

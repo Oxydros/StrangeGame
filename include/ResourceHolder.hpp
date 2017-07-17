@@ -10,7 +10,8 @@
 # include <string>
 
 template<typename Resource, typename Identifier>
-class ResourceHolder {
+class ResourceHolder
+{
 private:
     std::map<Identifier, std::unique_ptr<Resource>> resourceMap;
 
