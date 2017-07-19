@@ -8,6 +8,7 @@
 # include <SFML/Graphics.hpp>
 # include <string>
 # include <iostream>
+# include "World.hpp"
 
 # define FRAMERATE         60
 # define BITS_PER_PIXEL    32
@@ -22,16 +23,11 @@ public:
 private:
     sf::RenderWindow    window;
     std::string const   &appName;
-    sf::Texture         texture;
-    sf::Sprite          player;
+    World               _world;
     sf::Font            font;
     sf::Text            text;
     sf::Time            statisticUpdateTime;
     unsigned int        statisticNumFrames;
-    bool                movingUp;
-    bool                movingDown;
-    bool                movingLeft;
-    bool                movingRight;
 
 public:
     App(int width, int height, std::string const &title);

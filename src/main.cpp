@@ -1,8 +1,14 @@
 #include <App.hpp>
 
 int main() {
-    App app(800, 600, "StrangeGame");
+    try
+    {
+        App app(800, 600, "StrangeGame");
 
-    app.run();
+        app.run();
+    } catch (std::exception &e)
+    {
+        std::cout << "Got Exception: " << e.what() << std::endl;
+    }
     return 0;
 }

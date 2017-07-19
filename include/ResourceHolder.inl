@@ -5,6 +5,8 @@
 #ifndef STRANGEGAME_RESOURCEHOLDER_INL
 #define STRANGEGAME_RESOURCEHOLDER_INL
 
+#include <assert.h>
+
 template<typename Resource, typename Identifier>
 void ResourceHolder<Resource, Identifier>::load(Identifier id, std::string const &fileName) {
     std::unique_ptr<Resource> resource(new Resource());

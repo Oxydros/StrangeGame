@@ -5,13 +5,14 @@
 #ifndef STRANGEGAME_SCENENODE_HPP
 #define STRANGEGAME_SCENENODE_HPP
 
-#include <memory>
-#include <vector>
 #include <SFML/Graphics/Transformable.hpp>
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Time.hpp>
+
+#include <memory>
+#include <vector>
 
 class SceneNode : public sf::Transformable, public sf::Drawable, private sf::NonCopyable
 {

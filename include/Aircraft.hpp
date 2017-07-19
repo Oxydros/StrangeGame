@@ -25,7 +25,7 @@ private:
 public:
     explicit Aircraft(Type type, TextureHolder const &textures);
 
-    public;
+public:
     virtual void    drawCurrent(sf::RenderTarget &target, sf::RenderStates states) const;
 };
 
