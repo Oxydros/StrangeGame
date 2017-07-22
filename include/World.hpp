@@ -7,11 +7,21 @@
 
 #include "ResourceHolder.hpp"
 #include "ResourceIdentifiers.hpp"
-#include <SFML/System/NonCopyable.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 #include "SceneNode.hpp"
 #include "SpriteNode.hpp"
 #include "Aircraft.hpp"
+
+#include <SFML/System/NonCopyable.hpp>
+#include <SFML/Graphics/View.hpp>
+#include <SFML/Graphics/Texture.hpp>
+
+#include <array>
+
+//Forward declaration
+namespace sf
+{
+    class RenderWindow;
+}
 
 class World : private sf::NonCopyable
 {

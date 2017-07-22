@@ -5,6 +5,9 @@
 #include "Aircraft.hpp"
 #include "ResourceHolder.hpp"
 
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+
 Textures::ID toTextureID(Aircraft::Type type)
 {
     switch (type) {

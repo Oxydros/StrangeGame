@@ -4,6 +4,8 @@
 
 #include "SpriteNode.hpp"
 
+#include <SFML/Graphics/RenderTarget.hpp>
+
 SpriteNode::SpriteNode(sf::Texture const &texture)
         : _sprite(texture)
 {

@@ -4,6 +4,8 @@
 
 #include "World.hpp"
 
+#include <SFML/Graphics/RenderWindow.hpp>
+
 World::World(sf::RenderWindow &window)
         : _window(window), _worldView(window.getDefaultView()), _textures(), _sceneGraph(), _sceneLayers(),
           _worldBounds(0.0f, 0.0f, _worldView.getSize().x, 2000.0f),

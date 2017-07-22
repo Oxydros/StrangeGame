@@ -5,10 +5,16 @@
 #ifndef STRANGEGAME_APP_H
 # define STRANGEGAME_APP_H
 
-# include <SFML/Graphics.hpp>
+# include "World.hpp"
+
 # include <string>
 # include <iostream>
-# include "World.hpp"
+
+#include <SFML/System/Time.hpp>
+#include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics/Text.hpp>
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
 # define FRAMERATE         60
 # define BITS_PER_PIXEL    32

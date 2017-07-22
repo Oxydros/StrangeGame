@@ -2,25 +2,20 @@
 // Created by oxydros on 7/9/17.
 //
 
-#ifndef STRANGEGAME_RESOURCEHOLDER_INL
-#define STRANGEGAME_RESOURCEHOLDER_INL
-
-#include <assert.h>
-
 template<typename Resource, typename Identifier>
 void ResourceHolder<Resource, Identifier>::load(Identifier id, std::string const &fileName) {
-    std::unique_ptr<Resource> resource(new Resource());
+    std::unique_ptr<Resource> resource = std::make_unique<Resource>();
 
     if (!resource->loadFromFile(fileName)) {
         throw std::runtime_error("ResourceHolder - Failed to load from file " + fileName);
     }
-    insertResource(id, resource);
+    insertResource(id, std::move(resource));
 };
 
 template <typename Resource, typename Identifier>
 template <typename Parameter>
 void ResourceHolder<Resource, Identifier>::load(Identifier id, std::string const &fileName, Parameter param) {
-    std::unique_ptr<Resource> resource(new Resource());
+    std::unique_ptr<Resource> resource = std::make_unique<Resource>();
 
     if (!resource->loadFromFile(fileName, param)) {
         throw std::runtime_error("ResourceHolder - Failed to load from file " + fileName);
@@ -47,4 +42,3 @@ void ResourceHolder<Resource, Identifier>::insertResource(Identifier id, std::un
     auto inserted = resourceMap.insert(std::make_pair(id, std::move(resource)));
     assert(inserted.second);
 };
-#endif //STRANGEGAME_RESOURCEHOLDER_INL

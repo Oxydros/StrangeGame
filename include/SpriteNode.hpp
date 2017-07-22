@@ -5,8 +5,9 @@
 #ifndef STRANGEGAME_SPRITENODE_HPP
 #define STRANGEGAME_SPRITENODE_HPP
 
-#include <SFML/Graphics/Sprite.hpp>
 #include "SceneNode.hpp"
+
+#include <SFML/Graphics/Sprite.hpp>
 
 class SpriteNode : public SceneNode
 {

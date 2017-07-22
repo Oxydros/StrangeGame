@@ -2,11 +2,12 @@
 // Created by Louis Ventre on 7/17/17.
 //
 
-#include <algorithm>
-#include <assert.h>
 #include "SceneNode.hpp"
 
+#include <cassert>
+
 SceneNode::SceneNode()
+        : _children(), _parent(nullptr)
 {
 }
 

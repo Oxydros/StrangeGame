@@ -4,6 +4,8 @@
 
 #include <App.hpp>
 
+#include <SFML/Window/Event.hpp>
+
 float const App::PlayerSpeed = 100.0f;
 sf::Time const App::TimePerFrame = sf::seconds(1.0f / 60.0f);
 
