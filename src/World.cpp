@@ -9,7 +9,7 @@
 World::World(sf::RenderWindow &window)
         : _window(window), _worldView(window.getDefaultView()), _textures(), _sceneGraph(), _sceneLayers(),
           _worldBounds(0.0f, 0.0f, _worldView.getSize().x, 2000.0f),
-          _spawnPosition(_worldView.getSize().x / 2.0f, _worldBounds.height - _worldView.getSize().y),
+          _spawnPosition(_worldView.getSize().x / 2.0f, _worldBounds.height - _worldView.getSize().y / 2.0f),
           _scrollSpeed(-50.0f), _player(nullptr)
 {
 
@@ -59,7 +59,7 @@ void World::buildScene()
     std::unique_ptr<Aircraft> leftEscort(new Aircraft(Aircraft::Raptor, _textures));
     std::unique_ptr<Aircraft> rightEscort(new Aircraft(Aircraft::Raptor, _textures));
     rightEscort->setPosition(80.0f, 50.0f);
-    leftEscort->setPosition(80.0f, 50.0f);
+    leftEscort->setPosition(-80.0f, 50.0f);
     _player->attachChild(std::move(leftEscort));
     _player->attachChild(std::move(rightEscort));
 }
@@ -81,7 +81,7 @@ void World::update(sf::Time dt)
     if (position.x <= _worldBounds.left + 150 || position.x >= _worldBounds.left + _worldBounds.width - 150)
     {
         velocity.x *= -1;
-        _player->setVelocity((velocity));
+        _player->setVelocity(velocity);
     }
     _sceneGraph.update(dt);
 }
