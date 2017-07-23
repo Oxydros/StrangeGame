@@ -5,6 +5,7 @@
 #include "World.hpp"
 
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <cmath>
 
 World::World(sf::RenderWindow &window)
         : _window(window), _worldView(window.getDefaultView()), _textures(), _sceneGraph(), _sceneLayers(),
@@ -74,14 +75,23 @@ void World::update(sf::Time dt)
 {
     //Move view
     _worldView.move(0.0f, _scrollSpeed * dt.asSeconds());
+    _player->setVelocity(0.0f, 0.0f);
 
-    sf::Vector2f position = _player->getPosition();
-    sf::Vector2f velocity = _player->getVelocity();
-
-    if (position.x <= _worldBounds.left + 150 || position.x >= _worldBounds.left + _worldBounds.width - 150)
-    {
-        velocity.x *= -1;
-        _player->setVelocity(velocity);
-    }
+    while (!_cmdQueue.isEmpty())
+        _sceneGraph.onCommand(_cmdQueue.pop(), dt);
+    adaptPlayerVelocity();
     _sceneGraph.update(dt);
+}
+
+CommandQueue& World::getCommandQueue()
+{
+    return (_cmdQueue);
+}
+
+void World::adaptPlayerVelocity()
+{
+    sf::Vector2f    velocity = _player->getVelocity();
+    if (velocity.x != 0.0f && velocity.y != 0.0f)
+        _player->setVelocity(velocity / std::sqrt(2.0f));
+    _player->accelerate(0.0f, _scrollSpeed);
 }

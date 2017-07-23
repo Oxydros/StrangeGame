@@ -10,6 +10,7 @@
 #include "SceneNode.hpp"
 #include "SpriteNode.hpp"
 #include "Aircraft.hpp"
+#include "CommandQueue.hpp"
 
 #include <SFML/System/NonCopyable.hpp>
 #include <SFML/Graphics/View.hpp>
@@ -43,17 +44,20 @@ private:
     sf::Vector2f                        _spawnPosition;
     float                               _scrollSpeed;
     Aircraft                            *_player;
+    CommandQueue                        _cmdQueue;
 
 public:
-    explicit    World(sf::RenderWindow &window);
+    explicit        World(sf::RenderWindow &window);
 
 public:
-    void        update(sf::Time dt);
-    void        draw();
+    void            update(sf::Time dt);
+    void            draw();
+    CommandQueue    &getCommandQueue();
 
 private:
-    void        loadTextures();
-    void        buildScene();
+    void            loadTextures();
+    void            buildScene();
+    void            adaptPlayerVelocity();
 };
 
 #endif //STRANGEGAME_WORLD_HPP

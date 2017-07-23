@@ -6,6 +6,7 @@
 # define STRANGEGAME_APP_H
 
 # include "World.hpp"
+#include "Player.hpp"
 
 # include <string>
 # include <iostream>
@@ -30,6 +31,7 @@ private:
     sf::RenderWindow    window;
     std::string const   &appName;
     World               _world;
+    Player              _player;
     sf::Font            font;
     sf::Text            text;
     sf::Time            statisticUpdateTime;

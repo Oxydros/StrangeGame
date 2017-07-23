@@ -43,7 +43,7 @@ void SceneNode::updateCurrent(sf::Time dt)
 
 void SceneNode::updateChildren(sf::Time dt)
 {
-    for (Ptr const &child : _children)
+    for (SceneNode::Ptr const &child : _children)
     {
         child->update(dt);
     }
@@ -64,7 +64,7 @@ void SceneNode::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) c
 
 void SceneNode::drawChildren(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    for(const SceneNode::Ptr &child : _children)
+    for(SceneNode::Ptr const &child : _children)
     {
         child->draw(target, states);
     }
@@ -84,4 +84,18 @@ sf::Transform SceneNode::getWorldTransform() const
 sf::Vector2f SceneNode::getWorldPosition() const
 {
     return (getWorldTransform() * sf::Vector2f());
+}
+
+void SceneNode::onCommand(Command const &command, sf::Time dt)
+{
+    if (command.category & getCategory()) command.action(*this, dt);
+    for(SceneNode::Ptr &child : _children)
+    {
+        child->onCommand(command, dt);
+    }
+}
+
+Category::Type SceneNode::getCategory() const
+{
+    return (Category::Scene);
 }

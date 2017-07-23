@@ -15,6 +15,10 @@ private:
 public:
     void            setVelocity(sf::Vector2f v);
     void            setVelocity(float x, float y);
+    void            accelerate(sf::Vector2f v);
+    void            accelerate(float x, float y);
+
+
     sf::Vector2f    getVelocity() const;
 
 private:

@@ -29,3 +29,14 @@ void Aircraft::drawCurrent(sf::RenderTarget &target, sf::RenderStates states) co
 {
     target.draw(_sprite, states);
 }
+
+Category::Type Aircraft::getCategory() const
+{
+    switch (_type)
+    {
+        case Eagle:
+            return Category::PlayerAircraft;
+        default:
+            return Category::EnemyAircraft;
+    }
+}

@@ -13,11 +13,14 @@ App::App(int width, int height, std::string const &title)
         : window(sf::VideoMode(width, height, BITS_PER_PIXEL), title),
           appName(title),
           _world(window),
+          _player(),
           font(),
           text(),
           statisticUpdateTime(),
           statisticNumFrames(0)
 {
+    window.setKeyRepeatEnabled(false);
+
     font.loadFromFile("resources/fonts/OpenSans-Regular.ttf");
     text.setFont(font);
     text.setPosition(5.0f, 5.0f);
@@ -56,22 +59,16 @@ void App::update(sf::Time deltaTime)
 
 void App::processEvents()
 {
+    CommandQueue &cmd = _world.getCommandQueue();
+
     sf::Event   event;
     while(window.pollEvent((event)))
     {
-        switch (event.type)
-        {
-            case sf::Event::KeyPressed:
-                handleKeyboardInput(event.key.code, true);
-                break;
-            case sf::Event::KeyReleased:
-                handleKeyboardInput(event.key.code, false);
-                break;
-            case sf::Event::Closed:
-                window.close();
-                break;
-        }
+        _player.handleEvent(event, cmd);
+        if (event.type == sf::Event::Closed)
+            window.close();
     }
+    _player.handleRealtimeInput(cmd);
 }
 
 void App::render()
